@@ -16,7 +16,6 @@ AD           = util.Adb()
 tb           = util.TouchButton()
 so           = util.SetOption()
 sm           = util.SetCaptureMode()
-modeNumber   = util.ModeNumber['burst']
 Exposure     = util.Exposure
 Scenes       = util.Scenes
 Geo_Location = util.Geo_Location
@@ -43,7 +42,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(Exposure) #Random select an option
-        so.setCameraOption('Exposure',randomoption,modeNumber)
+        so.setCameraOption('Exposure',randomoption)
         tb.captureAndCheckPicCount('single',3)
 
     def testCapturePictureWithScenes(self):
@@ -56,9 +55,9 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(Scenes) #Random select an option
-        so.setCameraOption('Scenes',randomoption,modeNumber)
+        so.setCameraOption('Scenes',randomoption)
         tb.captureAndCheckPicCount('single',3)
-        so.setCameraOption('Scenes','auto',modeNumber) #Force set scenes to off
+        so.setCameraOption('Scenes','auto') #Force set scenes to off
 
     def testCaptureWithPictureSize(self):
         '''
@@ -70,7 +69,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(Picture_Size) #Random select an option
-        so.setCameraOption('Picture Size',randomoption,modeNumber)
+        so.setCameraOption('Picture Size',randomoption)
         tb.captureAndCheckPicCount('single',3)
 
     def testCapturepictureWithGeoLocation(self):
@@ -83,5 +82,5 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(Geo_Location) #Random select an option
-        so.setCameraOption('Geo Location',randomoption,modeNumber)
+        so.setCameraOption('Geo Location',randomoption)
         tb.captureAndCheckPicCount('single',3)
