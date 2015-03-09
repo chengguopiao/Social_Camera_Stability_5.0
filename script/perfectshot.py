@@ -20,7 +20,6 @@ tb           = util.TouchButton()
 Scenes       = util.Scenes
 Exposure     = util.Exposure
 Geo_Location = util.Geo_Location
-modeNumber   = util.ModeNumber['perfectshot']
 
 class CameraTest(unittest.TestCase):
     def setUp(self):
@@ -46,7 +45,7 @@ class CameraTest(unittest.TestCase):
         """ 
         location = random.choice(Geo_Location)
         #Step 2
-        so.setCameraOption('Geo Location',location,modeNumber)
+        so.setCameraOption('Geo Location',location)
         # Step 3
         tb.captureAndCheckPicCount('single',2)
 
@@ -61,7 +60,7 @@ class CameraTest(unittest.TestCase):
         """          
         #Step 2
         exposure = random.choice(Exposure)
-        so.setCameraOption('Exposure',exposure,modeNumber)
+        so.setCameraOption('Exposure',exposure)
         tb.captureAndCheckPicCount('single',2)
         
 # Test case 3
@@ -76,5 +75,5 @@ class CameraTest(unittest.TestCase):
         # Step 2
         scence = random.choice(Scenes)
         #print scence
-        so.setCameraOption('Scenes',scence,modeNumber)
+        so.setCameraOption('Scenes',scence)
         tb.captureAndCheckPicCount('single',2)
