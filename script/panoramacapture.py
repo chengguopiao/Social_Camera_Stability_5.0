@@ -17,7 +17,6 @@ a            = util.Adb()
 sm           = util.SetCaptureMode()
 so           = util.SetOption()
 tb           = util.TouchButton()
-modeNumber   = util.ModeNumber['panorama']
 Exposure     = util.Exposure
 Geo_Location = util.Geo_Location
 ISO          = util.ISO
@@ -45,7 +44,7 @@ class CameraTest(unittest.TestCase):
         """
         #step 2
         exposure = random.choice(Exposure)
-        so.setCameraOption('Exposure',exposure,modeNumber)
+        so.setCameraOption('Exposure',exposure)
         # Step 3
         tb.captureAndCheckPicCount('smile')
 
@@ -60,7 +59,7 @@ class CameraTest(unittest.TestCase):
         """   
         #Step 2
         location = random.choice(Geo_Location)
-        so.setCameraOption('Geo Location',location,modeNumber)
+        so.setCameraOption('Geo Location',location)
         # Step 3
         tb.captureAndCheckPicCount('smile')
 
@@ -77,6 +76,6 @@ class CameraTest(unittest.TestCase):
 
         #Step 2
         iso = random.choice(ISO)
-        so.setCameraOption('ISO',iso,modeNumber)
+        so.setCameraOption('ISO',iso)
         # Step 3
         tb.captureAndCheckPicCount('smile')
