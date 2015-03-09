@@ -18,7 +18,6 @@ a              = util.Adb()
 sm             = util.SetCaptureMode()
 so             = util.SetOption()
 tb             = util.TouchButton()
-modeNumber     = util.ModeNumber['hdr']
 Exposure       = util.Exposure
 Scenes         = util.Scenes
 Picture_Size   = util.Picture_Size
@@ -48,7 +47,7 @@ class CameraTest(unittest.TestCase):
         '''
         fdfr = random.choice(Face_Detection)
         # Step 2
-        so.setCameraOption('Face Detection',fdfr,modeNumber)
+        so.setCameraOption('Face Detection',fdfr)
         # Step 3
         tb.captureAndCheckPicCount('single')
 
@@ -64,7 +63,7 @@ class CameraTest(unittest.TestCase):
         '''
         geo = random.choice(Geo_Location)
         # Step 2
-        so.setCameraOption('Geo Location',geo,modeNumber)
+        so.setCameraOption('Geo Location',geo)
         # Step 3
         tb.captureAndCheckPicCount('single')
 
@@ -80,10 +79,10 @@ class CameraTest(unittest.TestCase):
         '''
         size = random.choice(Picture_Size)
         # Step 2
-        so.setCameraOption('Picture Size',size,modeNumber)
+        so.setCameraOption('Picture Size',size)
         # Step 3
         tb.captureAndCheckPicCount('single')
-        so.setCameraOption('Picture Size','WideScreen',modeNumber) #Force set to the default setting
+        so.setCameraOption('Picture Size','WideScreen') #Force set to the default setting
 
     # Testcase 4
     def testCapturePictureWithSelfTimer(self):
@@ -96,7 +95,7 @@ class CameraTest(unittest.TestCase):
         '''
         timer = random.choice(Self_Timer)
         # Step 2
-        so.setCameraOption('Self Timer',timer,modeNumber)
+        so.setCameraOption('Self Timer',timer)
         # Step 3
         tb.captureAndCheckPicCount('single',int(timer))
-        so.setCameraOption('Self Timer','0',modeNumber) #Force set timer to off
+        so.setCameraOption('Self Timer','0') #Force set timer to off
