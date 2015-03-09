@@ -13,7 +13,6 @@ a             = util.Adb()
 sm            = util.SetCaptureMode()
 so            = util.SetOption()
 tb            = util.TouchButton()
-modeNumber    = util.ModeNumber['smile']
 Exposure      = util.Exposure
 ISO           = util.ISO
 White_Balance = util.White_Balance
@@ -44,7 +43,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Exposure)
-        so.setCameraOption('Exposure',randomoption,modeNumber)
+        so.setCameraOption('Exposure',randomoption)
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 2
@@ -58,9 +57,9 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Scenes)
-        so.setCameraOption('Scenes',randomoption,modeNumber)
+        so.setCameraOption('Scenes',randomoption)
         tb.captureAndCheckPicCount('smile')
-        so.setCameraOption('Scenes','auto',modeNumber) #Force set scenes to auto
+        so.setCameraOption('Scenes','auto') #Force set scenes to auto
         time.sleep(2)
 
     # Testcase 3
@@ -74,7 +73,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Picture_Size)
-        so.setCameraOption('Picture Size',randomoption,modeNumber)
+        so.setCameraOption('Picture Size',randomoption)
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 4
@@ -88,7 +87,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Geo_Location)
-        so.setCameraOption('Geo Location',randomoption,modeNumber)
+        so.setCameraOption('Geo Location',randomoption)
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 5
@@ -102,7 +101,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(ISO)
-        so.setCameraOption('ISO',randomoption,modeNumber)
+        so.setCameraOption('ISO',randomoption)
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 6
@@ -116,5 +115,5 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(White_Balance)
-        so.setCameraOption('White Balance',randomoption,modeNumber)
+        so.setCameraOption('White Balance',randomoption)
         tb.captureAndCheckPicCount('smile')
