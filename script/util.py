@@ -530,7 +530,7 @@ class TouchButton():
                 raise Exception('set '+ mode + ' fail: cmode is '+cmode)
             #'com.intel.camera22_preferences_'+cmodenew+'.xml'
 
-    def captureAndCheckPicCount(self,capturemode,delaytime=0,times=1):
+    def captureAndCheckPicCount(self,capturemode,delaytime=0,times=1,currentmode='single'):
         d = { 'single':'jpg', 'video':'mp4', 'smile':'jpg', 'longclick':'jpg'} 
         beforeNo = commands.getoutput('adb shell ls /sdcard/DCIM/*/* | grep '+ d[capturemode] +' | wc -l') #Get count before capturing
         for i in range (0,times):
@@ -540,13 +540,16 @@ class TouchButton():
                 self.takePicture(capturemode)
             time.sleep(delaytime) #Sleep a few seconds for file saving
         afterNo = commands.getoutput('adb shell ls /sdcard/DCIM/*/* | grep '+ d[capturemode] +' | wc -l') #Get count after taking picture
-        result = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/mode_selected.xml | grep currentMode')
-        if result.find('value="5"') != -1 and capturemode != 'longclick':
+        #result = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/mode_selected.xml | grep currentMode')
+        if currentmode.find('burst') != -1 and capturemode != 'longclick':
             if string.atoi(beforeNo) != string.atoi(afterNo) - 10*times:
                raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
-        elif result.find('value="7"')==-1 and capturemode != 'longclick':
-            if string.atoi(beforeNo) != string.atoi(afterNo) - times:
+        elif currentmode.find('perfectshot')!=-1 and capturemode != 'longclick':
+            if string.atoi(beforeNo) != string.atoi(afterNo) - 9*times:
+                raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
+        elif capturemode == 'longclick':
+            if string.atoi(beforeNo) >= string.atoi(afterNo) - 2*times:
                 raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
         else:
-            if string.atoi(beforeNo) == string.atoi(afterNo):#If the count does not raise up after capturing, case failed
+            if string.atoi(beforeNo) != string.atoi(afterNo) - times:#If the count does not raise up after capturing, case failed
                 raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
