@@ -47,7 +47,7 @@ class CameraTest(unittest.TestCase):
         #Step 2
         so.setCameraOption('Geo Location',location)
         # Step 3
-        tb.captureAndCheckPicCount('single',2)
+        tb.captureAndCheckPicCount('single',2,1,'perfectshot')
 
 # Test case 2
     def testCaptureWithExposure(self):
@@ -61,7 +61,7 @@ class CameraTest(unittest.TestCase):
         #Step 2
         exposure = random.choice(Exposure)
         so.setCameraOption('Exposure',exposure)
-        tb.captureAndCheckPicCount('single',2)
+        tb.captureAndCheckPicCount('single',2,1,'perfectshot')
         
 # Test case 3
     def testCapturePictureWithScenes(self):
@@ -76,4 +76,4 @@ class CameraTest(unittest.TestCase):
         scence = random.choice(Scenes)
         #print scence
         so.setCameraOption('Scenes',scence)
-        tb.captureAndCheckPicCount('single',2)
+        tb.captureAndCheckPicCount('single',2,1,'perfectshot')
