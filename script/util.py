@@ -543,13 +543,13 @@ class TouchButton():
         #result = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/mode_selected.xml | grep currentMode')
         if currentmode.find('burst') != -1 and capturemode != 'longclick':
             if string.atoi(beforeNo) != string.atoi(afterNo) - 10*times:
-               raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
+               raise Exception('Taking burst images failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
         elif currentmode.find('perfectshot')!=-1 and capturemode != 'longclick':
             if string.atoi(beforeNo) != string.atoi(afterNo) - 9*times:
-                raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
+                raise Exception('Taking perfectshot images failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
         elif capturemode == 'longclick':
             if string.atoi(beforeNo) >= string.atoi(afterNo) - 2*times:
-                raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
+                raise Exception('Taking continuous images failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
         else:
             if string.atoi(beforeNo) != string.atoi(afterNo) - times:#If the count does not raise up after capturing, case failed
                 raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
